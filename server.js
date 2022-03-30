@@ -156,4 +156,4 @@ function emitGameOver(roomName, winner){
     io.sockets.in(roomName).emit('gameOver', JSON.stringify({ winner }))
 }
 
-server.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))
+server.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`))

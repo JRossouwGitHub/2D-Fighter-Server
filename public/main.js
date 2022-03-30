@@ -1,7 +1,10 @@
-const socket = io('https://fighter2d-server.herokuapp.com', {
+const http = 'https://fighter2d-server.herokuapp.com'
+//const http = 'http://localhost:3000'
+
+const socket = io(http, {
     transports: ['websocket', 'polling', 'flashsocket'],
     cors: {
-        origin: "https://fighter2d-server.herokuapp.com",
+        origin: http,
         allowedHeaders: ['Access-Control-Allow-Origin'],
         credentials: true
     }
