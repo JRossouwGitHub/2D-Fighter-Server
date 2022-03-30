@@ -10,6 +10,7 @@ const { FRAME_RATE, PORT } = require('./constants')
 
 const state = {}
 const clientRooms = {}
+app.use(express.static(__dirname + "/public"));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
