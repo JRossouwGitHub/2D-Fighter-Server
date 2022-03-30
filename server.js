@@ -1,4 +1,10 @@
-const io = require('socket.io')()
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
 const { initGame, gameLoop, makeId } = require('./game')
 const { FRAME_RATE, PORT } = require('./constants')
 
@@ -145,4 +151,8 @@ function emitGameOver(roomName, winner){
     io.sockets.in(roomName).emit('gameOver', JSON.stringify({ winner }))
 }
 
-io.listen(PORT)
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/dist/index.html');
+});
+
+server.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))

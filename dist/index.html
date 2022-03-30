@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>2D Fighter</title>
+</head>
+<body>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            font-family: 'Press Start 2P', cursive;
+        }
+        #mainMenuScene, #pauseMenuScene{
+            display: block;
+            margin: 0 auto;
+            width: max-content;
+            padding: 5px 0px;
+        }
+        #pauseMenuScene{
+            display: absolute;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: 99;
+        }
+        #mainMenuScene > h1, #pauseMenuScene > h1{
+            text-align: center;
+            margin-bottom: 200px;
+            font-size: 5rem;
+        }
+        #mainMenuScene > button, #mainMenuScene > input{
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Press Start 2P', cursive;
+        }
+        #mainMenuScene > button, #pauseMenuScene > button{
+            display: block;
+            margin: 0 auto;
+            font-size: 2rem;
+            width: 500px;
+            padding: 20px;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 15px;
+        }
+        #mainMenuScene > button:hover, #pauseMenuScene > button:hover{
+            color: white;
+            background-color: black;
+            cursor: pointer;
+        }
+        #mainMenuScene > input{
+            font-size: 1.25rem;
+            padding: 20px;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 15px;
+        }
+        #pauseMenuScene > button{
+            font-size: 2rem;
+            width: 500px;
+            padding: 20px;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 15px;
+            margin-bottom: 100px;
+        }
+    </style>
+    <div id="game">
+        <div id="mainMenuScene" style="display: block">
+            <h1>Bit Fighter</h1>
+            <button id="createGameBtn">Create A Game</button> <br />
+            <input  id="roomIDInput" type="text" placeholder="Enter Room ID..." /><br />
+            <button id="joinGameBtn">Join A Game</button>
+        </div>
+        <div id="pauseMenuScene" style="display: none">
+            <h1>Pause</h1>
+            <button id="continueBtn">Continue</button> <br />
+            <button id="exitBtn">Main Menu</button>
+        </div>
+        <div id="gameScene" style="display: none">
+            <div id="codeTitle" style="margin-left: 15px;">
+                <h2>Your Room ID: <span id="roomIDDisplay"></span></h2>
+                <p>Waiting for your opponent to join...</p>
+            </div>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="endGameScene" style="display: none">
+            <h1>Game Over</h1>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+    <script src="main.js" type="text/javascript"></script>
+</body>
+</html>
