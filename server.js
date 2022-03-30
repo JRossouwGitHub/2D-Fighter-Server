@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/dist/index.html');
 });
 
+/*
 io.on('connection', client => {
     client.emit('init', JSON.stringify(state))
 
@@ -153,6 +154,6 @@ function emitGameState(roomName, state){
 
 function emitGameOver(roomName, winner){
     io.sockets.in(roomName).emit('gameOver', JSON.stringify({ winner }))
-}
+}*/
 
 server.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))
