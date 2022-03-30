@@ -19,22 +19,23 @@ socket.on('tooManyPlayers', handleTooManyPlayers)
 socket.on('pauseGame', handlePauseGame)
 socket.on('pingGot', handlePingGot)
 
+let startTime
+let endTime
 const ping = document.getElementById('ping')
 let pingMs = new Array()
 
 function handlePingGot(){
+    endTime = performance.now()
+    if(pingMs.length >= 60){
+        pingMs.shift()
+    }
+    pingMs.push(Math.ceil((endTime - startTime)))
     ping.innerText = 'Ping: ' + Math.ceil((pingMs.reduce((a, b) => a + b, 0) / pingMs.length)) + 'ms'
 }
 
 setInterval(() => {
-    let startTime = performance.now()
+    startTime = performance.now()
     socket.emit('getPing')
-    let endTime = performance.now()
-    if(pingMs.length >= 60){
-        pingMs.shift()
-    }
-    pingMs.push(Math.ceil((endTime - startTime) * 100))
-    console.log(pingMs)
 }, 500)
 
 window.addEventListener('keydown', handleKeyDown)
