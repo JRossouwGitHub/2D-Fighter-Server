@@ -19,6 +19,12 @@ app.get('/', (req, res) => {
 io.on('connection', client => {
     client.emit('init', JSON.stringify(state))
 
+    client.on('getPing', handleGetPing)
+
+    function handleGetPing(){
+        client.emit('pingGot')
+    }
+
     client.on('togglePause', handleTogglePause)
 
     function handleTogglePause(){
