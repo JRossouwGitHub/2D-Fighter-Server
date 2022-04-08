@@ -13,10 +13,6 @@ function createGameState() {
     return {
         players: [
             {
-                position: {
-                    x: 0, 
-                    y: 0
-                },
                 size: {
                     w: 50, 
                     h: 150
@@ -37,10 +33,6 @@ function createGameState() {
                 isPaused: false
             },
             {
-                position: {
-                    x: 700, 
-                    y: 0
-                },
                 size: {
                     w: 50, 
                     h: 150
@@ -69,7 +61,7 @@ function gameLoop(state){
         console.log('No State')
         return
     }
-    const gravity = 4
+    const gravity = 5
     const playerOne = state.players[0]
     const playerTwo = state.players[1]
 

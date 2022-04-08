@@ -108,8 +108,8 @@ function joinGame(){
 }
 
 function init(){
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    canvas.width = 1200
+    canvas.height = 900
     socket.emit('gameSize', {width: canvas.width, height: canvas.height})
     gameActive = true
     scenes.mainMenuScene.src.style.display = 'none'

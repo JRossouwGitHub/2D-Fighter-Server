@@ -66,15 +66,19 @@ io.on('connection', client => {
         
         client.number = 2
         client.emit('init', 2)
-        
-        startGameInterval(roomName)
-        client.on('gameSize', setGameSize)
-    }
 
+        client.on('gameSize', setGameSize)
+        startGameInterval(roomName)
+    }
+    
     function setGameSize(canvas){
         const roomName = clientRooms[client.id]
         state[roomName].players[0].canvas = canvas
+        state[roomName].players[0].position = {x: (canvas.width / 4) - state[roomName].players[0].size.w, y: 0}
         state[roomName].players[1].canvas = canvas
+        state[roomName].players[1].position = {x: (canvas.width - (canvas.width / 4) - state[roomName].players[1].size.w), y: 0}
+        console.log(state[roomName].players[0].position)
+        console.log(state[roomName].players[1].position)
     }
 
     client.on('keydown', handleKeyDown)
